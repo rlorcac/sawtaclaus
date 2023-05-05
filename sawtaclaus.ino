@@ -16,16 +16,18 @@ public:
     name = _name;
   }
   void desplazar(int spd) {  // spd: -255 ~ 255
-    Serial.print("Moviendo rueda: ");
-    Serial.print(name);
-    Serial.print(" a velocidad: ");
 
     spd = map(spd, -128, 128, -255, 255);
     spd = min(255, spd);
     spd = max(-255, spd);
 
-    Serial.print(spd, DEC);
-    Serial.println();
+    if (spd) {
+      Serial.print("Moviendo rueda: ");
+      Serial.print(name);
+      Serial.print(" a velocidad: ");
+      Serial.print(spd, DEC);
+      Serial.println();
+    }
 
     if (spd >= 0) {
       analogWrite(backwdPin, 0);
@@ -59,13 +61,16 @@ public:
       spd = min(maxMus, spd);
       spd = max(minMus, spd);
 
-      Serial.print("Arma activada a velocidad: ");
-      Serial.print(spd, DEC);
-      Serial.println();
+      if (spd != stopMus) {
+        Serial.print("Arma activada a velocidad: ");
+        Serial.print(spd, DEC);
+        Serial.println();
+      }
 
       servo.writeMicroseconds(spd);
     } else {
-      Serial.println("El arma no se activó porque estaba lockeada");
+      if (spd)
+        Serial.println("El arma no se activó porque estaba lockeada");
     }
   }
   void lockOn() {
