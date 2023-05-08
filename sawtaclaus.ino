@@ -1,6 +1,6 @@
-#include <Servo.h>
-#include <Ps3Controller.h>
-#include <analogWrite.h>
+#include <Servo.h> // https://github.com/RoboticsBrno/ServoESP32/
+#include <Ps3Controller.h> // https://github.com/jvpernis/esp32-ps3
+#include <analogWrite.h> // https://github.com/ERROPiX/ESP32_AnalogWrite
 
 class Rueda {
   public:
@@ -79,12 +79,15 @@ class Arma {
     void lockOn() {
       Serial.println("Lock del arma activado");
       lock = true;
-      servo.writeMicroseconds(stopMus);
-      Serial.println("Arma detenida");
+      this->stop();
     }
     void lockOff() {
       Serial.println("Lock del arma desactivado");
       lock = false;
+    }
+    void stop(){
+      servo.writeMicroseconds(stopMus);
+      Serial.println("Arma detenida");
     }
   private:
     bool lock;
