@@ -1,6 +1,7 @@
 #include <Servo.h> // https://github.com/RoboticsBrno/ServoESP32/
 #include <Ps3Controller.h> // https://github.com/jvpernis/esp32-ps3
-#include <analogWrite.h> // https://github.com/ERROPiX/ESP32_AnalogWrite
+//#include <analogWrite.h> // https://github.com/ERROPiX/ESP32_AnalogWrite, causa errores de compilación pero arreglable(?)
+// on second look, parece que no es necesario incluirla??? wtf???
 
 class Rueda {
   public:
@@ -72,7 +73,6 @@ class Arma {
         servo.writeMicroseconds(spd);
       } else {
         if (spd)
-        
           Serial.println("El arma no se activó porque estaba lockeada");
       }
     }
