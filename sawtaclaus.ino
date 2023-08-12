@@ -96,7 +96,7 @@ class Arma {
 // CONSTANTES
 const int PWM_FREQ = 50;
 const int MOVS[4] = { 16, 17, 19, 18 };  //RF, RB, LF, LB ->  IN4, IN3, IN2, IN1
-const int ARMA = 13;
+const int ARMA = 15;
 const int minArma = 1300, maxArma = 2000, stopArma = 1300;  // calibración manual
 Rueda ruedaDer = Rueda(MOVS[0], MOVS[1], 0, 1, "Derecha"), ruedaIzq = Rueda(MOVS[2], MOVS[3], 2, 3, "Izquierda");
 Arma arma = Arma(ARMA, 4, minArma, maxArma, stopArma, PWM_FREQ);
